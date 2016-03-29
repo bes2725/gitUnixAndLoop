@@ -23,16 +23,13 @@ import javafx.scene.paint.Color;
 **then it will further authenticate by requiring the user to know the correct account type.
 */
 
-public class Authentication extends Application
+public class Authentication2 extends Application
 {
-	public enum AccountType {Administrator, Student, Staff, Guest}
 	public void start (Stage primaryStage)
 	{
-		AccountType[] choices = {AccountType.Administrator, AccountType.Student,
-			AccountType.Staff, AccountType.Guest};
 		final String USERNAME = "Bailey", PASSWORD = "keePer";
 		//string
-
+		
 		primaryStage.setTitle("Authentication");
 		Label userName = new Label("Username");
 		TextField userNameTxtFld = new TextField();
@@ -56,32 +53,28 @@ public class Authentication extends Application
 			{
 				public void handle(ActionEvent event)
 				{
+					int count = 1;
 					String inuser = userNameTxtFld.getText();
 					String inpass = pwTxtFld.getText();
 					if (USERNAME.equalsIgnoreCase(inuser) && PASSWORD.equals(inpass))
 					{
-						AccountType input = (AccountType) JOptionPane.showInputDialog(null, "Select your account type.",
-							"Account Type", JOptionPane.INFORMATION_MESSAGE, null, choices, choices[3]);
-						while (input != null)
-						{
-							switch (input)
-							{
-							case Student:
-								JOptionPane.showMessageDialog(null, "Welcome, " + USERNAME);
-								break;
-							default:
-								JOptionPane.showMessageDialog(null, "You are not registered as " + input);
-								break;
-							}
-							
-							input = (AccountType) JOptionPane.showInputDialog(null, "Select your account type", 
-								"Account Type", JOptionPane.INFORMATION_MESSAGE, null, choices, choices[3]);
-						}
+						JOptionPane.showMessageDialog(null, "Welcome, " + USERNAME);
 					}
 					else
 					{	
+					while (count<=3)
+					{
 					wrong.setFill(Color.RED);
 					wrong.setText("Incorrect username or password");
+						if (count == 3)
+						{
+							JOptionPane.showMessageDialog(null, "ERROR");
+						}
+						else
+						{ 
+						count++;
+						}
+					}
 					}
 				}
 			});
@@ -98,6 +91,3 @@ public class Authentication extends Application
 
 	}
 }
-
-
-
