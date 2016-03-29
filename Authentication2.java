@@ -19,8 +19,7 @@ import javafx.scene.paint.Color;
 **Bailey Spicer
 **March 28, 2016
 **bes2725@email.vccs.edu
-**this is an authenticaiton program.  it will get text input from GUI and confirm username/password
-**then it will further authenticate by requiring the user to know the correct account type.
+**this is an authenticaiton program.  it will only allow the user to input an incorrect username and password 3 times before it locks out.
 */
 
 public class Authentication2 extends Application
@@ -53,29 +52,27 @@ public class Authentication2 extends Application
 			{
 				public void handle(ActionEvent event)
 				{
-					int count = 1;
 					String inuser = userNameTxtFld.getText();
 					String inpass = pwTxtFld.getText();
-					if (USERNAME.equalsIgnoreCase(inuser) && PASSWORD.equals(inpass))
-					{
-						JOptionPane.showMessageDialog(null, "Welcome, " + USERNAME);
-					}
-					else
-					{	
-					while (count<=3)
-					{
-					wrong.setFill(Color.RED);
-					wrong.setText("Incorrect username or password");
-						if (count == 3)
+					//counter
+						int i = 1;
+						while (i<4)
 						{
-							JOptionPane.showMessageDialog(null, "ERROR");
+						if (USERNAME.equalsIgnoreCase(inuser) && PASSWORD.equals(inpass))
+						{
+							JOptionPane.showMessageDialog(null, "Welcome, " + USERNAME);
 						}
-						else
-						{ 
-						count++;
+						else if (i == 3)
+						{
+							JOptionPane.showMessageDialog(null, "Your account has been locked.  Contact an Administrator");
 						}
-					}
-					}
+						else 
+						{
+							wrong.setFill(Color.RED);
+							wrong.setText("Incorrect username or password");
+							i = i + 1;
+						}
+						}
 				}
 			});
 		grid.getChildren().add(sceneTitle);
