@@ -62,7 +62,7 @@ public class Authentication extends Application
 					{
 						AccountType input = (AccountType) JOptionPane.showInputDialog(null, "Select your account type.",
 							"Account Type", JOptionPane.INFORMATION_MESSAGE, null, choices, choices[3]);
-						while (input != null)
+						do
 						{
 							switch (input)
 							{
@@ -77,6 +77,7 @@ public class Authentication extends Application
 							input = (AccountType) JOptionPane.showInputDialog(null, "Select your account type", 
 								"Account Type", JOptionPane.INFORMATION_MESSAGE, null, choices, choices[3]);
 						}
+						while (input != null);
 					}
 					else
 					{	
